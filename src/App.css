@@ -104,6 +104,8 @@
 .result-container h3 {
   margin-bottom: 10px;
   color: #333;
+  background: pink;
+  margin: 10px;
 }
 
 .result-container p {

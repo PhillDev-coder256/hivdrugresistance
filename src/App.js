@@ -90,7 +90,7 @@ function App() {
           <div>
             <div className='headers'>
               <h1 className="nero-h1 hide-gt-lg">HIV-ResistNet</h1>
-              <h2 className="nero-h2 hide-gt-lg">Accurately predicting HIV drug resistance profiles online using Artificial Intelligence.</h2>
+              <h2 className="nero-h2 hide-gt-lg">Accurately predict HIV drug resistance profiles online using Artificial Intelligence.</h2>
             </div>
             <section>
               <div>

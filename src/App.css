@@ -121,12 +121,13 @@
   color: #333;
   text-align: center;
   padding: 20px;
-  width: 100%;
+  width: 70%;
   position: fixed;
   bottom: 0;
   box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
   font-weight: bolder;
   border-radius: 20px 20px 0 0;
+  margin-top: 20px;
 }
 
 @media (max-width: 768px) {

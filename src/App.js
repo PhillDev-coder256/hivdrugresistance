@@ -85,7 +85,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="q-page-container" style={{ paddingTop: 30 }}>
+      <div className="q-page-container" style={{ paddingTop: 10 }}>
         <main style={{ minHeight: "none" }} data-v-b04ecca3="">
           <div>
             <div className='headers'>
@@ -108,7 +108,7 @@ function App() {
                       />
                       <input
                         type="text"
-                        placeholder="Admission"
+                        placeholder="Admission Code"
                         className="inputothers"
                         value={admission}
                         onChange={handleAdmissionChange}

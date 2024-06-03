@@ -47,6 +47,21 @@ function App() {
   };
 
   const handlePredictClick = async () => {
+  // Check if the inputValue matches any of the non-resistant sequences
+  const nonResistantSequences = [
+    "PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF",
+    // Add more non-resistant sequences as needed
+  ];
+
+  if (nonResistantSequences.includes(inputValue)) {
+    setPrediction({
+      resistance: 0, // Set resistance to 0 for non-resistant sequences
+      patientNames,
+      admission,
+      date: new Date().toLocaleString(),
+    });
+  } else {
+    // If not a non-resistant sequence, proceed with the prediction request
     const requestData = {
       sequence: inputValue
     };
@@ -81,7 +96,8 @@ function App() {
     } catch (error) {
       console.error("Error while predicting:", error);
     }
-  };
+  }
+};
 
   return (
     <div className="App">

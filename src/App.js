@@ -96,7 +96,7 @@ function App() {
               <div>
                 <div className='prection_result_row'>
                   <div className="InputArea" data-v-143d6e0d="">
-                    <h2 className='headers'>INPUT PATIENTS DATA</h2>
+                    <h2 className='headers'>INPUT PATIENTS' DATA</h2>
                     <div style={{ display: 'flex' }}>
                       <input
                         type="text"

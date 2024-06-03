@@ -49,7 +49,7 @@ function App() {
   const handlePredictClick = async () => {
   // Check if the inputValue matches any of the non-resistant sequences
   const nonResistantSequences = [
-    "PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLN",
+    "PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLN_",
     // Add more non-resistant sequences as needed
   ];
 

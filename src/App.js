@@ -95,6 +95,9 @@ function App() {
       querySnapshot.forEach((doc) => {
         console.log(`${doc.id} => ${doc.data()}`);
       });
+
+      // Refresh the page after successful submission
+      window.location.reload();
     } catch (error) {
       console.error("Error saving data to Firestore:", error);
       alert("There was an error saving data. Please try again later.");

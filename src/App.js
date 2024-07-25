@@ -4,7 +4,7 @@ import { FaUpload } from 'react-icons/fa';
 import axios from 'axios';
 import { db } from './firebase';
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
-import {PatientList} from './PatientList.js';
+import {PatientList} from './PatientList';
 
 function App() {
   const [patientNames, setPatientNames] = useState('');
@@ -173,7 +173,7 @@ function App() {
                     )}
                   </div>
                 </div>
-                <div style={{ paddingTop: 10; border: '1px solid red'; }}>
+                <div style={{ paddingTop: 10, border: "1px solid red"; }}>
                     <h4>Recent Patients Data</h4>
                     <PatientList />
                 </div>

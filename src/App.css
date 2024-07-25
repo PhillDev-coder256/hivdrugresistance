@@ -145,3 +145,33 @@
     width: 90%;
   }
 }
+
+/* App.css */
+
+.PatientList {
+  padding: 20px;
+}
+
+.PatientList table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.PatientList th, .PatientList td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.PatientList th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.PatientList tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.PatientList tr:hover {
+  background-color: #ddd;
+}
+

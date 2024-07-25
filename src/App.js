@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import { FaUpload } from 'react-icons/fa';
 import axios from 'axios';
 import { db } from './firebase';
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore"; 
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 function App() {
   const [patientNames, setPatientNames] = useState('');
@@ -11,7 +11,7 @@ function App() {
   const [fileContents, setFileContents] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [prediction, setPrediction] = useState(null);
-  const fileInputRef = React.useRef(null);
+  const fileInputRef = useRef(null);
 
   const handlePatientNamesChange = (event) => {
     setPatientNames(event.target.value);
@@ -47,55 +47,56 @@ function App() {
   };
 
   const handlePredictClick = async () => {
-    // Check if the inputValue matches any of the non-resistant sequences
     const nonResistantSequences = [
       "PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF",
-      // Add more non-resistant sequences as needed
     ];
 
     if (nonResistantSequences.includes(inputValue)) {
       setPrediction({
-        resistance: 0, // Set resistance to 0 for non-resistant sequences
+        resistance: 0,
         patientNames,
         admission,
         date: new Date().toLocaleString(),
       });
+      await saveDataToFirestore(0);
     } else {
-      // If not a non-resistant sequence, proceed with the prediction request
-      const requestData = {
-        sequence: inputValue
-      };
-
+      const requestData = { sequence: inputValue };
       try {
         const res = await axios.post('https://mallan.net/hiv_prediction', requestData, {
           headers: {
             'Content-Type': 'application/json'
           }
         });
-
         const predictionResult = res.data;
-        const currentDate = new Date().toLocaleString(); // Get the current date and time
-
-        // Save patient data, prediction result, and date in Firestore
-        const docRef = await addDoc(collection(db, "patients"), {
-          patientNames,
-          admission,
-          sequence: inputValue,
-          resistance: predictionResult.resistance,
-          date: currentDate // Store the current date
-        });
-
-        // Fetch the saved document to verify
-        const q = query(collection(db, "patients"), where("__name__", "==", docRef.id));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data()}`);
-        });
-
+        const currentDate = new Date().toLocaleString();
         setPrediction({ ...predictionResult, patientNames, admission, date: currentDate });
+        await saveDataToFirestore(predictionResult.resistance);
       } catch (error) {
         console.error("Error while predicting:", error);
+        alert("There was an error predicting resistance. Please try again later.");
       }
+    }
+  };
+
+  const saveDataToFirestore = async (resistance) => {
+    try {
+      const currentDate = new Date().toLocaleString();
+      const docRef = await addDoc(collection(db, "patients"), {
+        patientNames,
+        admission,
+        sequence: inputValue,
+        resistance,
+        date: currentDate
+      });
+
+      const q = query(collection(db, "patients"), where("__name__", "==", docRef.id));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+      });
+    } catch (error) {
+      console.error("Error saving data to Firestore:", error);
+      alert("There was an error saving data. Please try again later.");
     }
   };
 

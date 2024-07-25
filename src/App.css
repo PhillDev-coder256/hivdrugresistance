@@ -158,8 +158,8 @@
 }
 
 .PatientList th, .PatientList td {
-  border: 1px solid #ddd;
-  padding: 8px;
+/*   border: 2px solid #ddd; */
+  padding: 10px;
 }
 
 .PatientList th {

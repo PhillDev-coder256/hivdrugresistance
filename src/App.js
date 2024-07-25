@@ -87,7 +87,6 @@ try {
   console.error("Error while predicting:", error);
   alert("There was an error while predicting. Ensure the sequence is correct");
 }
-Use code with caution.
 }
 };
 return (

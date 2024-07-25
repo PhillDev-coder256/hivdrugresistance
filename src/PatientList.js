@@ -1,10 +1,9 @@
-
 // PatientList.js
 import React, { useEffect, useState } from 'react';
 import { db } from './firebase';
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
-const PatientList = () => {
+export const PatientList = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
@@ -50,6 +49,4 @@ const PatientList = () => {
       </table>
     </div>
   );
-}
-
-export default PatientList;
+};

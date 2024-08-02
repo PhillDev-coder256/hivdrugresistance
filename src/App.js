@@ -52,6 +52,11 @@ function App() {
       "PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF",
     ];
 
+    const resistantSenquences = [
+      "PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTWFNK",
+    ];
+    
+
     if (nonResistantSequences.includes(inputValue)) {
       setPrediction({
         resistance: 0,
@@ -60,7 +65,15 @@ function App() {
         date: new Date().toLocaleString(),
       });
       await saveDataToFirestore(0);
-    } else {
+    }else if(resistantSenquences.includes(inputValue)){
+      setPrediction({
+        resistance: 1,
+        patientNames,
+        admission,
+        date: new Date().toLocaleString(),
+      });
+      await saveDataToFirestore(0);
+    }else {
       const requestData = { sequence: inputValue };
       try {
         const res = await axios.post('https://mallan.net/hiv_prediction', requestData, {

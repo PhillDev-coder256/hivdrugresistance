@@ -116,9 +116,7 @@ function App() {
       querySnapshot.forEach((doc) => {
         console.log(`${doc.id} => ${doc.data()}`);
       });
-
-      // Refresh the page after successful submission
-      // window.location.reload();
+      
     } catch (error) {
       console.error("Error saving data to Firestore:", error);
       alert("There was an error saving data. Please try again later.");
@@ -197,8 +195,7 @@ function App() {
                     )}
                   </div>
                 </div>
-                <div style={{ paddingTop: 10, border: "1px solid red", }}>
-                    // <h4>Recent Patients Data</h4>
+                <div style={{ paddingTop: 6, border: "1px solid gray", }}>
                     <PatientList />
                 </div>
               </div>

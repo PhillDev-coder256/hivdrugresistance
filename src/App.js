@@ -198,7 +198,7 @@ function App() {
                   </div>
                 </div>
                 <div style={{ paddingTop: 10, border: "1px solid red", }}>
-                    <h4>Recent Patients Data</h4>
+                    // <h4>Recent Patients Data</h4>
                     <PatientList />
                 </div>
               </div>
